@@ -24,3 +24,9 @@ class TestZone:
 
         winner = ttt.iswinner(b, "X", "O")
         assert winner
+
+    def test_printpretty(self, capsys):
+        b = ttt.create_grid()
+        ttt.printpretty(b)
+        captured = capsys.readouterr()
+        assert captured.out == "Here is the playboard: \n---+---+---\n   |   |  \n---+---+---\n   |   |  \n---+---+---\n   |   |  \n---+---+---\n"
