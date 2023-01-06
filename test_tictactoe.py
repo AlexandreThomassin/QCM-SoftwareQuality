@@ -9,3 +9,18 @@ class TestZone:
         assert b == [[" ", " ", " "],
                      [" ", " ", " "],
              [" ", " ", " "]]
+
+    def test_iswinner(self):
+        b = ttt.create_grid()
+        b[0][0] = "X"
+        b[0][1] = "X"
+        b[0][2] = "X"
+
+        winner = ttt.iswinner(b, "X", "O")
+        assert not winner
+
+    def test_isnotwinner(self):
+        b = ttt.create_grid()
+
+        winner = ttt.iswinner(b, "X", "O")
+        assert winner
