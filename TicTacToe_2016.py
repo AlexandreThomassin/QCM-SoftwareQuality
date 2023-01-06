@@ -64,7 +64,7 @@ def startgamming(board, symbol_1, symbol_2, count):
 
         # Check if the square is already filled
     while (board[row][column] == symbol_1)or (board[row][column] == symbol_2):
-        illegal(board, symbol_1, symbol_2, row, column)
+        illegal()
         row = int(input("Pick a row[upper row:"
                         "[enter 0, middle row: enter 1, bottom row: enter 2]:"))
         column = int(input("Pick a column:"
@@ -158,7 +158,7 @@ def iswinner(board, symbol_1, symbol_2):
     
 
 
-def illegal(board, symbol_1, symbol_2, row, column):
+def illegal():
     print("The square you picked is already filled. Pick another one.")
 
     
@@ -174,11 +174,11 @@ def report(count, winner, symbol_1, symbol_2):
 
 def main():
 # The main function
-    introduction = intro()
+    intro()
     board = create_grid()
-    pretty = printpretty(board)
+    printpretty(board)
     symbol_1, symbol_2 = sym()
-    full = isfull(board, symbol_1, symbol_2) # The function that starts the game is also in here.
+    isfull(board, symbol_1, symbol_2) # The function that starts the game is also in here.
   
 
 
