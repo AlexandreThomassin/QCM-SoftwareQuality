@@ -39,7 +39,7 @@ def sym():
 
 
 
-def startGamming(board, symbol_1, symbol_2, count):
+def startgamming(board, symbol_1, symbol_2, count):
 # This function starts the game.
 
     # Decides the turn
@@ -56,7 +56,7 @@ def startGamming(board, symbol_1, symbol_2, count):
 
     # Check if players' selection is out of range
     while (row > 2 or row < 0) or (column > 2 or column < 0):
-        outOfBoard(row, column)
+        outofboard(row, column)
         row = int(input("Pick a row[upper row:"
                         "[enter 0, middle row: enter 1, bottom row: enter 2]:"))
         column = int(input("Pick a column:"
@@ -81,13 +81,13 @@ def startGamming(board, symbol_1, symbol_2, count):
 
 
 
-def isFull(board, symbol_1, symbol_2):
+def isfull(board, symbol_1, symbol_2):
     count = 1
     winner = True
 # This function check if the board is full
     while count < 10 and winner == True:
-        gaming = startGamming(board, symbol_1, symbol_2, count)
-        pretty = printPretty(board)
+        gaming = startgamming(board, symbol_1, symbol_2, count)
+        pretty = printpretty(board)
         
         if count == 9:
             print("The board is full. Game over.")
@@ -95,7 +95,7 @@ def isFull(board, symbol_1, symbol_2):
                 print("There is a tie. ")
 
         # Check if here is a winner
-        winner = isWinner(board, symbol_1, symbol_2, count)
+        winner = iswinner(board, symbol_1, symbol_2, count)
         count += 1
     if winner == False:
         print("Game over.")
@@ -105,13 +105,13 @@ def isFull(board, symbol_1, symbol_2):
 
 
 
-def outOfBoard(row, column):
+def outofboard(row, column):
 # This function tells the players that their selection is out of range
     print("Out of boarder. Pick another one. ")
     
     
 
-def printPretty(board):
+def printpretty(board):
 # This function prints the board nice!
     rows = len(board)
     cols = len(board)
@@ -123,7 +123,7 @@ def printPretty(board):
 
 
 
-def isWinner(board, symbol_1, symbol_2, count):
+def iswinner(board, symbol_1, symbol_2, count):
 # This function checks if any winner is winning
     winner = True
     # Check the rows
@@ -185,9 +185,9 @@ def main():
 # The main function
     introduction = intro()
     board = create_grid()
-    pretty = printPretty(board)
+    pretty = printpretty(board)
     symbol_1, symbol_2 = sym()
-    full = isFull(board, symbol_1, symbol_2) # The function that starts the game is also in here.
+    full = isfull(board, symbol_1, symbol_2) # The function that starts the game is also in here.
   
 
 
