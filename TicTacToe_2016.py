@@ -42,33 +42,30 @@ def sym():
 def startgamming(board, symbol_1, symbol_2, count):
 # This function starts the game.
 
+    pickrow = "Pick a row:\n[upper row: enter 0, middle row: enter 1, bottom row: enter 2]:"
+    pickcolumn = "Pick a column:\n[left column: enter 0, middle column: enter 1, right column enter 2]"
+
     # Decides the turn
     if count % 2 == 0:
         player = symbol_1
     elif count % 2 == 1:
         player = symbol_2
     print("Player "+ player + ", it is your turn. ")
-    row = int(input("Pick a row:"
-                    "[upper row: enter 0, middle row: enter 1, bottom row: enter 2]:"))
-    column = int(input("Pick a column:"
-                       "[left column: enter 0, middle column: enter 1, right column enter 2]"))
+    row = int(input(pickrow))
+    column = int(input(pickcolumn))
 
 
     # Check if players' selection is out of range
     while (row > 2 or row < 0) or (column > 2 or column < 0):
         outofboard()
-        row = int(input("Pick a row[upper row:"
-                        "[enter 0, middle row: enter 1, bottom row: enter 2]:"))
-        column = int(input("Pick a column:"
-                           "[left column: enter 0, middle column: enter 1, right column enter 2]"))
+        row = int(input(pickrow))
+        column = int(input(pickcolumn))
 
         # Check if the square is already filled
     while (board[row][column] == symbol_1)or (board[row][column] == symbol_2):
         illegal()
-        row = int(input("Pick a row[upper row:"
-                        "[enter 0, middle row: enter 1, bottom row: enter 2]:"))
-        column = int(input("Pick a column:"
-                            "[left column: enter 0, middle column: enter 1, right column enter 2]"))    
+        row = int(input(pickrow))
+        column = int(input(pickcolumn))    
         
     # Locates player's symbol on the board
     if player == symbol_1:

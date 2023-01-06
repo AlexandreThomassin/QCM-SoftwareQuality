@@ -1,5 +1,3 @@
-
-
 import pytest
 
 import TicTacToe_2016 as ttt
@@ -7,7 +5,7 @@ import TicTacToe_2016 as ttt
 class TestZone:
 
     def testtrue(self):
-        assert 1
+        assert True
 
     def test_create_grid(self):
         b = ttt.create_grid()
