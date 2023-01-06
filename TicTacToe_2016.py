@@ -56,7 +56,7 @@ def startgamming(board, symbol_1, symbol_2, count):
 
     # Check if players' selection is out of range
     while (row > 2 or row < 0) or (column > 2 or column < 0):
-        outofboard(row, column)
+        outofboard()
         row = int(input("Pick a row[upper row:"
                         "[enter 0, middle row: enter 1, bottom row: enter 2]:"))
         column = int(input("Pick a column:"
@@ -64,7 +64,7 @@ def startgamming(board, symbol_1, symbol_2, count):
 
         # Check if the square is already filled
     while (board[row][column] == symbol_1)or (board[row][column] == symbol_2):
-        filled = illegal(board, symbol_1, symbol_2, row, column)
+        illegal(board, symbol_1, symbol_2, row, column)
         row = int(input("Pick a row[upper row:"
                         "[enter 0, middle row: enter 1, bottom row: enter 2]:"))
         column = int(input("Pick a column:"
@@ -86,8 +86,8 @@ def isfull(board, symbol_1, symbol_2):
     winner = True
 # This function check if the board is full
     while count < 10 and winner == True:
-        gaming = startgamming(board, symbol_1, symbol_2, count)
-        pretty = printpretty(board)
+        startgamming(board, symbol_1, symbol_2, count)
+        printpretty(board)
         
         if count == 9:
             print("The board is full. Game over.")
@@ -95,7 +95,7 @@ def isfull(board, symbol_1, symbol_2):
                 print("There is a tie. ")
 
         # Check if here is a winner
-        winner = iswinner(board, symbol_1, symbol_2, count)
+        winner = iswinner(board, symbol_1, symbol_2)
         count += 1
     if winner == False:
         print("Game over.")
@@ -105,7 +105,7 @@ def isfull(board, symbol_1, symbol_2):
 
 
 
-def outofboard(row, column):
+def outofboard():
 # This function tells the players that their selection is out of range
     print("Out of boarder. Pick another one. ")
     
@@ -114,7 +114,6 @@ def outofboard(row, column):
 def printpretty(board):
 # This function prints the board nice!
     rows = len(board)
-    cols = len(board)
     print("---+---+---")
     for r in range(rows):
         print(board[r][0], " |", board[r][1], "|", board[r][2])
@@ -123,45 +122,37 @@ def printpretty(board):
 
 
 
-def iswinner(board, symbol_1, symbol_2, count):
+def iswinner(board, symbol_1, symbol_2):
 # This function checks if any winner is winning
     winner = True
     # Check the rows
     for row in range (0, 3):
         if (board[row][0] == board[row][1] == board[row][2] == symbol_1):
             winner = False
-            print("Player " + symbol_1 + ", you won!")
+            print(f"Player {symbol_1} , you won!")
    
         elif (board[row][0] == board[row][1] == board[row][2] == symbol_2):
             winner = False
-            print("Player " + symbol_2 + ", you won!")
+            print(f"Player {symbol_2} , you won!")
             
             
     # Check the columns
     for col in range (0, 3):
         if (board[0][col] == board[1][col] == board[2][col] == symbol_1):
             winner = False
-            print("Player " + symbol_1 + ", you won!")
+            print(f"Player {symbol_1} , you won!")
         elif (board[0][col] == board[1][col] == board[2][col] == symbol_2):
             winner = False
-            print("Player " + symbol_2 + ", you won!")
+            print(f"Player {symbol_2} , you won!")
 
     # Check the diagonals
-    if board[0][0] == board[1][1] == board[2][2] == symbol_1:
+    if (board[0][0] == board[1][1] == board[2][2] == symbol_1) or (board[0][2] == board[1][1] == board[2][0] == symbol_1):
         winner = False 
-        print("Player " + symbol_1 + ", you won!")
+        print(f"Player {symbol_1} , you won!")
 
-    elif board[0][0] == board[1][1] == board[2][2] == symbol_2:
+    elif (board[0][0] == board[1][1] == board[2][2] == symbol_2) or (board[0][2] == board[1][1] == board[2][0] == symbol_2):
         winner = False
-        print("Player " + symbol_2 + ", you won!")
-
-    elif board[0][2] == board[1][1] == board[2][0] == symbol_1:
-        winner = False
-        print("Player " + symbol_1 + ", you won!")
-
-    elif board[0][2] == board[1][1] == board[2][0] == symbol_2:
-        winner = False
-        print("Player " + symbol_2 + ", you won!")
+        print(f"Player {symbol_2} , you won!")
 
     return winner
     
